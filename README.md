@@ -71,6 +71,6 @@ While it is not good practice to embed such a large dataset, it is done here for
 
 ## Search Details
 
-The _search_ over the dataset is implemented by using the built-in [network address functions](https://www.postgresql.org/docs/11/functions-net.html). This is indexable, and reasonably performant. For production grade applications, you should consider using MAXMIND's [own database](https://dev.maxmind.com/geoip/geoip2/downloadable/), which has libraries for most all major languages. Postgres was chosen here to easier demonstrate orchestration with [docker-compose](https://docs.docker.com/compose/).
+The _search_ over the dataset is implemented by using the built-in [network address functions](https://www.postgresql.org/docs/11/functions-net.html) within ``Postgres``. This is indexable, and reasonably performant. For production grade applications, you should consider using MAXMIND's [own database](https://dev.maxmind.com/geoip/geoip2/downloadable/), which has libraries for most all major languages. Postgres was chosen here to easier demonstrate orchestration with [docker-compose](https://docs.docker.com/compose/).
 
 
