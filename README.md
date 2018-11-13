@@ -10,7 +10,7 @@ A small app for finding the approximate geo location of ipv4 addresses. The appl
 
 # Quick Start
 
-Build and the application & database:
+Build and run the application & database:
 
 ```
 docker-compose up
@@ -65,9 +65,9 @@ Then start the application
 
 ## Embedded Data
 
-This project has embedded a copy of a copy of the [GeoLite2 Free Downloadable Database](https://dev.maxmind.com/geoip/geoip2/geolite2/) from November, 2018 in CSV format (compressed). The location of the file to use can be overridden with the ``ipv4-geo-lookup.loader.source-location`` property. There are [many ways](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html) in spring boot to override a property.
+This project has embedded a copy of the [GeoLite2 Free Downloadable Database](https://dev.maxmind.com/geoip/geoip2/geolite2/) from November, 2018 in CSV format (compressed). The location of the file to use can be overridden with the ``ipv4-geo-lookup.loader.source-location`` property. There are [many ways](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html) in spring boot to override a property.
 
-While it is not good practice to embed such a large database, it is done here for the purpose of having a _working example_ with minimal dependencies.
+While it is not good practice to embed such a large dataset, it is done here for the purpose of having a _working example_ with minimal dependencies.
 
 ## Search Details
 
