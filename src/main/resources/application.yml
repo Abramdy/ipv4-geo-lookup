@@ -1,0 +1,17 @@
+logging:
+  level:
+    com:
+      github:
+        wmwilcox: DEBUG
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+    
+ipv4-geo-lookup:
+  loader:
+    source-compressed: true
+    source-location: "classpath:data/geo.zip"
+    batch-size: 50_000

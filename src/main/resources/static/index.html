@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ipv4 geo lookup</title>
+	</head>
+	<body>
+		<form id="geoLookupFrm" onsubmit="search();return false">
+			<label for="ipv4address">Enter IPv4 address to search for its approximate geolocation</label>
+			<input 
+				type="text"
+				id="ipv4address"
+				value="1.2.3.4"
+				required
+				placeholder="xxx.xxx.xxx.xxx"
+				title="Enter a valid IPv4 Address {0-255}.{0-255}.{0-255}.{0-255}"
+				pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$">
+			<input type="submit" value="Search">
+		</form>
+		
+		<div id="divResults">
+			<pre id="jsonResultsDisplay" style="color:gray">... {results display} ...</pre>
+			<a style="display:none" id="resultLink" href="https://www.google.com/maps/search/43.2463615,-43.6329548" target="_blank">
+				View location in google maps
+			</a>
+		</div>
+
+	</body>
+	<script type="text/javascript">
+		function search() {
+			console.log("searching");
+			const ipv4Address = document.getElementById("ipv4address").value;
+			console.log(`searching for ${ipv4Address}`);
+			
+			fetch(`/search?ipv4Address=${ipv4Address}`)
+				.then(response => {
+					if (response.status === 200) {
+						return response.json();
+					} else {
+						console.error(response);
+						return {"error":"sorry, something went wrong"}
+					}
+				})
+				.then(responseData => {
+					const stringifiedResults = JSON.stringify(responseData,null,4);
+					document.getElementById('jsonResultsDisplay').textContent = stringifiedResults;
+					
+					const linkElement = document.getElementById('resultLink').href = resultLink;
+					if (!responseData.error) {
+						const resultLink = `https://www.google.com/maps/search/${responseData.latitude},${responseData.longitude}`
+						linkElement.href = resultLink;
+						linkElement.setAttribute("style","");
+					} else {
+						linkElement.setAttribute("style","display:none;");
+					}
+				});
+			
+			return false;
+		}
+	</script>
+</html>

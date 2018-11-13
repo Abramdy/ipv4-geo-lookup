@@ -1,0 +1,18 @@
+databaseChangeLog:
+  - changeSet:
+      id: core-1
+      author: wmwilcox
+      changes:
+      - sql:
+          comment: add table network_location
+          sql: >
+            create table network_location (
+              network cidr primary key,
+              latitude real,
+              longitude real,
+              accuracy_radius int
+            );
+            comment on table network_location is 'mapping a network location to its approximate geolocation (long,lat) w/ accuracy.';
+            comment on column network_location.accuracy_radius is 'accuracy of the location in kilometers';
+            
+            create index on network_location using gist(network inet_ops);
